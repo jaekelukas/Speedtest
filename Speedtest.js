@@ -9,26 +9,21 @@ function calculateUL(){
 
 async function pinging() {
   let startTime = new Date().getTime();
-  let endTime = null;
   try {
-    var response = await fetch("https://192.168.55.201:8081/Testat_3_Speedtest/Test.php",{ method: "HEAD" });
+    var response = await fetch("https://192.168.55.201:8081/Speedtest/Ping.txt",{ method: "HEAD" });
     //evtl Ping datei
-    endTime = new Date().getTime();
-    return Math.abs(startTime - endTime);
+    return startTime;
   } catch (error) {
     return -1;
   }
 }
 async function loaddown(){
   let startTime = new Date().getTime();
-  let endTime = null;
   try {
-    var response = await fetch("https://192.168.55.201:8081/Testat_3_Speedtest/Data.txt");
-    console.log(response)
+    var response = await fetch("https://192.168.55.201:8081/Speedtest/Data25");
     dlcsize =response.headers.get("content-length")*8
-    endTime = new Date().getTime();
     downloadContent=await response.text()
-    return (dlcsize/(endTime-startTime))/Math.pow(10,6)*1000;
+    return startTime
   } catch (error) {
     return -1;
   }
@@ -36,16 +31,15 @@ async function loaddown(){
 async function loadup(){
   let startTime = new Date().getTime();
   let endTime = null;
-  console.log(startTime/1000)
   try {
-        var response = await fetch("https://192.168.55.201:8081/Testat_3_Speedtest/Uploadtest.php",
-      {
-        method: "POST",
-        body: downloadContent
-    });//while schleife?
-    endTime=Number(await response.text());
-    console.log(endTime)
-    return (dlcsize/(endTime-(startTime/1000)))/Math.pow(10,6);
+        var response = await fetch("https://192.168.55.201:8081/Speedtest/Data25",
+        {
+          method: "POST",
+          body: downloadContent
+        });//while schleife?
+    endTime=new Date().getTime();
+    console.log(endTime-startTime)
+    return (dlcsize/(endTime-startTime))/Math.pow(10,3);
   } catch (error) {
     return -1;
   }
@@ -57,17 +51,24 @@ let uploadErgebnis = document.getElementById("uploadErgebnis");
 
 document.getElementById("startButton").onclick = async () => {
   await pinging().then(function (result) {
+      let endTime = new Date().getTime();
     if (result == -1) {
       pingErgebnis.textContent = "Someone fucked up";
     } else {
-      pingErgebnis.textContent = result.toFixed(2);
+      pingErgebnis.textContent =endTime- result.toFixed(0);
+      console.log(window.webkitPerformance);
+      console.log(window.msPerformance);
+      console.log(window.mozPerformance);
+      console.log(window.performance)
     }
   });
   await loaddown().then(function (result) {
+      endTime =new Date().getTime();
     if (result == -1) {
       downloadErgebnis.textContent = "Someone fucked up";
     } else {
-      downloadErgebnis.textContent = result.toFixed(2);
+      downloadErgebnis.textContent = (dlcsize/(endTime-result.toFixed(2)))/Math.pow(10,3);
+      console.log(window.performance)
     }
   });
   await loadup().then(function (result) {
@@ -75,6 +76,7 @@ document.getElementById("startButton").onclick = async () => {
       uploadErgebnis.textContent = "Someone fucked up";
     } else {
       uploadErgebnis.textContent = result.toFixed(2);
+      console.log(window.performance)
     }
   });
 };

@@ -9,7 +9,7 @@
     <header>
       <h3>Speedtest</h3>
     </header>
-    <section>
+    <section id=datenAnzeige>
       <button id="startButton" >
         Start
       </button>
@@ -27,8 +27,41 @@
 
       </table>
     </section>
+    <section id=fortschrittsAnzeige>
+      <label for="fortschritt">Fortschritt:</label>
+      <meter id="fortschritt"
+             min="0" max="100" value="0">
+      </meter>
+    </section>
     <footer>
     </footer>
   </body>
   <script type="text/javascript" src="Speedtest.js"></script>
-</html>
+  <?php
+    $servername = "localhost";
+    $username = "root";
+    $password = "my1stQNAP";
+    $dbname = "Speedtest";
+    //echo "<p>Connection</p>";
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Check connection
+    if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "INSERT INTO `Ranking` (`Nr`, `IP`, `Download`, `Upload`, `Ping`, `Time`)
+    VALUES ('1', '192.168.1.1', '50 MBits', '50 MBits', '10', '2021-05-27 07:39:31')";
+
+    if ($conn->query($sql) === TRUE) {
+    $last_id = $conn->insert_id;
+    echo "New record created successfully. Last inserted ID is: " . $last_id;
+    } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    $conn->close();
+
+   ?>
+ </html>

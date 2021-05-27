@@ -6,7 +6,7 @@ header{
   align-items: center;
   justify-content: center;
 }
-section{
+#datenAnzeige{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,5 +15,31 @@ table{
   margin-top: 10%;
   margin-left: 20%;
   margin-right: 20%;
+  padding: 30px;
   border: 1px solid black;
+  background-color: lightgrey;
+}
+#fortschrittsAnzeige{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px;
+}
+article{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+th{
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-bottom: 10%;
+
+}
+form{
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-bottom: 5%;
+  border: 2px solid black;
+
 }

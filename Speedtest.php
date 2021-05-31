@@ -37,15 +37,6 @@
       if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
       }
-      $sql = "INSERT INTO `Ranking` (`Nr`, `IP`, `Download`, `Upload`, `Ping`, `Time`)
-      VALUES ('5', '192.168.1.1', '50 MBits', '50 MBits', '10', '2021-05-27 07:39:31')";
-
-      if ($conn->query($sql) === TRUE) {
-      $last_id = $conn->insert_id;
-      echo "New record created successfully. Last inserted ID is: " . $last_id;
-      } else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
-      }
      ?>
     <header>
       <h3>Speedtest</h3>

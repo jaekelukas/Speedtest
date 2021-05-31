@@ -48,7 +48,14 @@ async function save(pingErgebnis, downloadErgebnis, uploadErgebnis)
   console.log(obj)
   const request = new XMLHttpRequest()
   request.open('POST', 'InDatenbank.php')
-  request.setRequestHeader('Content-Type','application/json')
+  request.onload = function () {
+    if (request.status === 200) {
+        console.log('Upload erfolgreich')
+        console.log(request);
+    } else {
+        console.log('Fehler beim Upload'+request.responseText)
+    }
+};
   request.send(JSON.stringify(obj));
 }
 let pingErgebnis = document.getElementById("pingErgebnis");

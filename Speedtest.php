@@ -50,9 +50,9 @@
             <th>Ping</th>
           </tr>
           <tr>
-            <td id="downloadErgebnis"></td>
-            <td id="uploadErgebnis"></td>
-            <td id="pingErgebnis"></td>
+            <td id="downloadErgebnis">0 Mbit/s</td>
+            <td id="uploadErgebnis">0 Mbit/s</td>
+            <td id="pingErgebnis">0 ms</td>
           </tr>
         </table>
       </section>

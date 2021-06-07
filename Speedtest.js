@@ -1,17 +1,14 @@
 var downloadContent=0;
 var dlcsize=0;
 var repeat=5;
-//var response = fetch("https://192.168.55.201:8081/Speedtest/Uploadtest.php");
-//console.log(response.text())
-function calculateDL(){
 
-}
+
+
 
 async function pinging() {
   let startTime = new Date().getTime();
   try {
     response = await fetch("https://192.168.55.201:8081/Speedtest/Ping.html",{ method: "HEAD" });
-    //evtl Ping datei
     return startTime;
   } catch (error) {
     return -1;
@@ -47,30 +44,36 @@ async function save(pingErgebnis, downloadErgebnis, uploadErgebnis)
   const obj={"ping":pingErgebnis, "download":downloadErgebnis,"upload":uploadErgebnis}
   console.log(obj)
   const request = new XMLHttpRequest()
-  request.open('POST', 'InDatenbank.php')
+
+  request.open('POST', 'https://192.168.55.201:8081/Speedtest/InDatenbank.php')
+  request.setRequestHeader('Content-Type', 'application/json')
   request.onload = function () {
     if (request.status === 200) {
         console.log('Upload erfolgreich')
-        console.log(request);
+        console.log(request.responseText);
+
+        location.reload(true)
+
     } else {
         console.log('Fehler beim Upload'+request.responseText)
     }
 };
   request.send(JSON.stringify(obj));
+
 }
+
+
+
 let pingErgebnis = document.getElementById("pingErgebnis");
 let downloadErgebnis = document.getElementById("downloadErgebnis");
 let uploadErgebnis = document.getElementById("uploadErgebnis");
 let fortschritt = document.getElementById("fortschritt")
 
 document.getElementById("startButton").onclick = async () => {
-  pingErgebnis.textContent="1"
-  downloadErgebnis.textContent="1"
-  uploadErgebnis.textContent="1"
+  pingErgebnis.textContent="0 MBit/s"
+  downloadErgebnis.textContent="0 MBit/s"
+  uploadErgebnis.textContent="0 ms"
   fortschritt.value=""
-
-  //wieder entfernen, nur zu testzwecken
-  await save(pingErgebnis.textContent, downloadErgebnis.textContent, uploadErgebnis.textContent);
 
   let pvalue=0;
   for (var i = 1; i <= repeat; i++) {
@@ -83,7 +86,7 @@ document.getElementById("startButton").onclick = async () => {
       }
     });
   }
-  pingErgebnis.textContent =Math.round(pvalue/repeat)
+  pingErgebnis.textContent =Math.round(pvalue/repeat)+" ms"
 
   let dvalue=0;
   for (var i = 1; i <= repeat; i++) {
@@ -98,7 +101,7 @@ document.getElementById("startButton").onclick = async () => {
     });
     fortschritt.value += 10
   }
-  downloadErgebnis.textContent =Math.round((dvalue/repeat)*100)/100
+  downloadErgebnis.textContent =Math.round((dvalue/repeat)*100)/100+" MBit/s"
 
   let uvalue=0;
   for (var i = 1; i <= repeat; i++) {
@@ -113,7 +116,7 @@ document.getElementById("startButton").onclick = async () => {
     });
     fortschritt.value += 10
   }
-  uploadErgebnis.textContent =Math.round((uvalue/repeat)*100)/100
+  uploadErgebnis.textContent =Math.round((uvalue/repeat)*100)/100+" MBit/s"
   //let data
 
   await save(pingErgebnis.textContent, downloadErgebnis.textContent, uploadErgebnis.textContent);

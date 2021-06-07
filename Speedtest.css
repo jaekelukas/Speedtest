@@ -31,15 +31,24 @@ article{
   justify-content: center;
 }
 th{
-  padding-left: 3%;
-  padding-right: 3%;
+  padding-left: 5%;
+  padding-right: 5%;
   padding-bottom: 10%;
-
+  width: 200px;
+  align-items: center;
+  justify-content: center;
+}
+td{
+  padding-left: 5%;
+  padding-right: 5%;
+  width: 200px;
+  align-items: center;
+  justify-content: center;
 }
 form{
   margin-left: 30%;
   margin-right: 30%;
-  margin-bottom: 5%;
+  margin-bottom: 3%;
   border: 2px solid black;
 
 }

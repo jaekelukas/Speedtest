@@ -80,7 +80,7 @@ document.getElementById("startButton").onclick = async () => {
     await pinging().then(function (result) {
       let endTime = new Date().getTime();
       if (result == -1) {
-        pingErgebnis.textContent = "Someone fucked up";
+        pingErgebnis.textContent = "Keine Verbindung";
       } else {
         pvalue+=(endTime- result.toFixed(0));
       }
@@ -93,9 +93,9 @@ document.getElementById("startButton").onclick = async () => {
     await loaddown().then(function (result) {
       let endTime =new Date().getTime();
       if (result == -1) {
-        downloadErgebnis.textContent = "Someone fucked up";
+        downloadErgebnis.textContent = "Keine Verbindung";
       } else {
-        downloadErgebnis.textContent = Math.round(((dlcsize/(endTime-result.toFixed(0)))/Math.pow(10,3))*100)/100;
+        downloadErgebnis.textContent = Math.round(((dlcsize/(endTime-result.toFixed(0)))/Math.pow(10,3))*100)/100+" MBit/s";
         dvalue+=(dlcsize/(endTime-result.toFixed(0)))/Math.pow(10,3);
       }
     });
@@ -108,9 +108,9 @@ document.getElementById("startButton").onclick = async () => {
     await loadup().then(function (result) {
       let endTime=new Date().getTime();
       if (result == -1) {
-        uploadErgebnis.textContent = "Someone fucked up";
+        uploadErgebnis.textContent = "Keine Verbindung";
       } else {
-        uploadErgebnis.textContent = Math.round(((dlcsize/(endTime-result.toFixed(0)))/Math.pow(10,3))*100)/100;
+        uploadErgebnis.textContent = Math.round(((dlcsize/(endTime-result.toFixed(0)))/Math.pow(10,3))*100)/100+" MBit/s";
         uvalue+=(dlcsize/(endTime-result.toFixed(0)))/Math.pow(10,3);
       }
     });

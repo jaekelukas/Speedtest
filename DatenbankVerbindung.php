@@ -1,4 +1,5 @@
 <?php
+//eröffnet eine Datenbank Verbindung
   $servername = "localhost";
   $username = "root";
   $password = "my1stQNAP";

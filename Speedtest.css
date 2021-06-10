@@ -1,5 +1,11 @@
 body{
-  margin: 10%;
+  margin: 2%;
+  background-image: url("https://simplecore.intel.com/itpeernetwork/wp-content/uploads/sites/38/2018/10/server-hallway.jpeg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: sans-serif;
+
 }
 header{
   display: flex;
@@ -7,48 +13,81 @@ header{
   justify-content: center;
 }
 #datenAnzeige{
-  display: flex;
+  display: grid;
   align-items: center;
   justify-content: center;
+
+  margin-bottom: 3%;
+  padding: 2%;
+
+  text-align: center;
 }
-table{
-  margin-top: 10%;
-  margin-left: 20%;
-  margin-right: 20%;
-  padding: 30px;
-  border: 1px solid black;
-  background-color: lightgrey;
-}
+
 #fortschrittsAnzeige{
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 15px;
+  padding: 1%;
+  zoom: 1.5;
 }
 article{
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 2%;
 }
+table{
+  opacity: 0.9;
+  margin-top: 2%;
+  margin-bottom: 4%;
+  padding: 5%;
+  border: 2px solid black;
+  background-color: lightgrey;
+  border-radius: 10px;
+}
+
 th{
-  padding-left: 5%;
-  padding-right: 5%;
-  padding-bottom: 10%;
-  width: 200px;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
+
+  padding-bottom: 2%;
+  margin-left: 4%;
+  margin-right: 4%;
+
 }
 td{
-  padding-left: 5%;
-  padding-right: 5%;
-  width: 200px;
-  align-items: center;
-  justify-content: center;
-}
-form{
-  margin-left: 30%;
-  margin-right: 30%;
-  margin-bottom: 3%;
-  border: 2px solid black;
+  text-align: center;
 
+  margin-left: 4%;
+  margin-right: 4%;
+}
+
+section{
+  display: grid;
+  justify-content: space-around;
+  align-items: center;
+
+}
+p{
+  text-align: center;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+button{
+  font-family: sans-serif;
+  zoom: 2.0;
+  background-color: rgba(121, 205, 205, 0.9);
+  margin-bottom: 4%;
+}
+main{
+  background-color: rgba(214,214,214,0.9);
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: 100%;
+  padding: 4%;
+}
+meter{
+  margin-left: 2%;
 }

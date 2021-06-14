@@ -1,22 +1,21 @@
 1. Schritt:
+  - "Speedtest"-Verzeichnis auf Webserver anlegen und alle vorhandenen Dateien
+    vom GitRepository in dieses kopieren
+  - https://github.com/jaekelukas/Speedtest.git
+  
+2. Schritt:
   - Datenbank erstellen CREATE TABLE `Ranking` ( `Nr` INT(5) NOT NULL AUTO_INCREMENT ,
-                          `IP` VARCHAR(20) NOT NULL ,
+                          `IP` VARCHAR(32) NOT NULL ,
                           `Download` VARCHAR(20) NOT NULL ,
                           `Upload` VARCHAR(20) NOT NULL ,
                           `Ping` VARCHAR(20) NOT NULL ,
                           `Time` DATETIME NOT NULL , PRIMARY KEY (`Nr`));
   - (Alternativ) Datenbank importieren "Ranking.sql" in Datenbank importieren
 
-2. Schritt:
-  - "Speedtest"-Verzeichnis auf Webserver anlegen und alle vorhandenen Dateien
-    vom GitRepository in dieses kopieren
-  - https://github.com/jaekelukas/Speedtest.git
-
 3. Schritt:
   - In DatenbankVerbindung.php Verbindungsdaten in Variablen eintragen
 
 4. Schritt:
-  - "Speedtest"-Verzeichnis anlegen
   - Url zu "Speedtest" Verzeichnis in JS-Variable eintragen
   - Anzahl der gewünschten Wiederholungen in "rep"-Variable eintragen
 

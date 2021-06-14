@@ -4,7 +4,8 @@ var downloadContent=0;
 var dlcsize=0;
 //Anzahl der Down- und Uploads
 var repeat=5;
-
+var url="https://192.168.55.201:8081/Speedtest/"
+//referenziert den Speedtest Ordner
 
 
 //Funktion nimmt die Startzeit, führt dann einen Download einer kleinen Datei aus
@@ -12,7 +13,7 @@ var repeat=5;
 async function pinging() {
   let startTime = new Date().getTime();
   try {
-    response = await fetch("https://192.168.55.201:8081/Speedtest/Ping.html",{ method: "HEAD" });
+    response = await fetch(url+"Ping.html",{ method: "HEAD" });
     return startTime;
   } catch (error) {
     return -1;
@@ -23,10 +24,9 @@ async function pinging() {
 async function loaddown(){
   let startTime = new Date().getTime();
   try {
-    response = await fetch("https://192.168.55.201:8081/Speedtest/Data.txt");
+    response = await fetch(url+"Data.txt");
     dlcsize =response.headers.get("content-length")*8
     downloadContent=await response.text()
-
     return startTime
   } catch (error) {
     return -1;
@@ -37,7 +37,7 @@ async function loaddown(){
 async function loadup(){
   let startTime = new Date().getTime();
   try {
-        response = await fetch("https://192.168.55.201:8081/Speedtest/Data.txt",
+        response = await fetch(url+"Data.txt",
         {
           method: 'POST',
           body: downloadContent
@@ -54,17 +54,14 @@ async function save(pingErgebnis, downloadErgebnis, uploadErgebnis, fortschritt)
 {
   const obj={"ping":pingErgebnis, "download":downloadErgebnis,"upload":uploadErgebnis}
   const request = new XMLHttpRequest()
-
-  request.open('POST', 'https://192.168.55.201:8081/Speedtest/InDatenbank.php')
+  request.open('POST', url+'InDatenbank.php')
   request.setRequestHeader('Content-Type', 'application/json')
   request.onload = function () {
     if (request.status === 200) {
         console.log(request.responseText)
 
-        window.open('https://192.168.55.201:8081/Speedtest/Speedtest.php?download='+downloadErgebnis+'&upload='+uploadErgebnis+
+        window.open(url+'Speedtest.php?download='+downloadErgebnis+'&upload='+uploadErgebnis+
         '&ping='+pingErgebnis+'&fortschritt='+fortschritt,"_self")
-        //location.reload(true)
-
     } else {
         console.log('Fehler beim Upload'+request.responseText)
     }

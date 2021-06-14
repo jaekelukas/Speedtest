@@ -15,7 +15,7 @@
     $upload= $obj->upload;
     $date =date("Y-m-d h:i:s");
     $ip =$_SERVER['REMOTE_ADDR'];
-
+//Eintrag in Datenbank
     $sql = "INSERT INTO `Ranking` (`IP`, `Download`, `Upload`, `Ping`, `Time`)
     VALUES ('$ip', '$download', '$upload', '$ping', '$date')";
 

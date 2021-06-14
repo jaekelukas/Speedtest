@@ -1,8 +1,8 @@
 <?php
 //eröffnet eine Datenbank Verbindung
-  $servername = "localhost";
-  $username = "root";
-  $password = "my1stQNAP";
+  $servername = "Servername";
+  $username = "Username";
+  $password = "Passwort";
   $dbname = "Speedtest";
 
   $conn = new mysqli($servername, $username, $password, $dbname);
